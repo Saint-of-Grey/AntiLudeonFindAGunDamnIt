@@ -3,7 +3,9 @@
     <name>FindAGunDamnIt!</name>
     <author>AliceTries</author>
     <targetVersion>0.19.2009</targetVersion>
-    <description>
+    <description>I just want my pawns to find a dang weapon and not ask me about it, ESPECIALLY IF THEY ARE A HUNTER.
+        That alert makes me so mad when they are standing on a bow.
+        
         How this mod works ?
         eXtend job giver for getting a weapon from JobGiver_PickUpOpportunisticWeapon
         A patch for Thought Tree for the job driver

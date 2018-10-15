@@ -11,7 +11,7 @@ namespace FindAGunDamnIt
         {
             return pawn.IsColonist && !pawn.Drafted &&
                    ((AmHunter(pawn) && !WorkGiver_HunterHunt.HasHuntingWeapon(pawn)) //alert!!!
-                    || pawn.IsHashIntervalTick(2579 + pawn.Name.GetHashCode() % 579));
+                    || !pawn.IsHashIntervalTick(2579 + pawn.Name.GetHashCode() % 579));
             //range for normal optimize clothing is 3000-6000 this gives an offset of about that without storing another
             //value but using the names hash as salt which is effectively constant cost.
             //O(n), st n E [10,70] = O(70) = O(1)

@@ -59,16 +59,19 @@ namespace FindAGunDamnIt
 
             var amHunter = ThinkNode_ConditionalHunter.AmHunter(pawn);
 
-            //pawn has Explosive but is hunter.
-            if (!boom && amHunter && pawnBoom) return true;
             //am hunter, dont want booms
             if (amHunter && boom) return false;
+            
+            //pawn has Explosive but is hunter.
+            if (!boom && amHunter && pawnBoom) return true;
+            
+            
 
             try
             {
                 var should = Constants.ShouldEquip.Invoke(that, new object[] {thing, pawn});
                 Trace("Classic Method said  : "+should);
-                if (should != null && (bool) should) return true;
+                if (should != null && ! (bool) should) return false;
             }
             catch (Exception e)
             {
@@ -80,14 +83,19 @@ namespace FindAGunDamnIt
             if (hurts /*implied && pawnHurts*/) //if both hurt pick better
             {
                 Trace("At least it hurts em!");
-                if (thing.def.IsRangedWeapon && ! pawn.equipment.Primary.def.IsRangedWeapon )
+                var notRanged = ! pawn.equipment.Primary.def.IsRangedWeapon;
+                if (thing.def.IsRangedWeapon && notRanged )
                 {
                     Trace("Ranged Weapon!");
                     return true;
                 }
+                else if (thing.def.IsRangedWeapon == notRanged /*same weapon category*/ 
+                         && thing.MarketValue > pawn.equipment.Primary.MarketValue)
+                {
+                    return true;
+                }
                 else
                 {
-                    
                     Trace("Farts");
                 }
             }

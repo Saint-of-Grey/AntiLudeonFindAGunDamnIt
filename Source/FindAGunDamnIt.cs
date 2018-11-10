@@ -73,7 +73,7 @@ namespace FindAGunDamnIt
 
             Thing thing = null;
 
-            for (int j = 0; j < list?.Count; j++)
+            for (int j = 0; j < list.Count; j++)
             {
                 var gun = list[j];
                 if (!currentOutfit.filter.Allows(gun)) continue;
